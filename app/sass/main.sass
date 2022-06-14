@@ -1,0 +1,957 @@
+@import base
+
+// -----CONTAINER-----
+.container
+	width: 100%
+	max-width: 1220px
+	padding: 0 15px
+	margin: 0 auto
+
+	+r(1200)
+		max-width: 992px
+
+	+r(992)
+		max-width: 768px
+
+	+r(767)
+		max-width: 576px
+
+	+r(576)
+		max-width: 480px
+
+// -----BUTTON-----
+.btn
+	position: relative
+	display: flex
+	justify-content: center
+	align-items: center
+	height: 66px
+	max-width: 100%
+	width: 100%
+	border: 1px solid $accent
+	background-color: $accent
+	padding: 0 15px
+	font-size: 16px
+	color: #fff
+	font-weight: 400
+
+	&:hover
+		border: 1px solid $dark
+		background: $dark
+		color: #fff
+
+	&:active
+		border: 1px solid #fff
+		background: $dark
+		color: #fff
+
+.h1, h1
+	color: #fff
+	font-size: 54px
+	font-weight: 900
+
+.h2, h2
+	font-size: 48px
+	font-weight: 900
+	margin-bottom: 35px
+	color: $title
+	text-transform: uppercase
+
+.link
+	color: $accent
+	position: relative
+	z-index: 1
+
+	&::before
+		content: ''
+		width: 0
+		transform: scale(0)
+		transition: all .3s
+		position: absolute
+		bottom: -1px
+		width: 100%
+		height: 2px
+		background-color: $accent
+		z-index: -1
+
+	&:hover
+		color: $accent
+		text-decoration: none
+		&::before
+			transform: scale(1)
+
+	&:active
+		color: $accent
+		text-decoration: none
+		&::before
+			transform: scale(1)
+// -----HAMBURGER-----
+.hamburger
+	position: relative
+	display: none
+	padding: 0
+	border: none
+	background-color: transparent
+	transition: all .3s
+	width: 25px
+	height: 18px
+	margin-right: 15px
+	outline: none
+
+	+r(767)
+		display: flex
+
+	&:hover
+		span
+			background-color: $accent
+
+			&::before,
+			&::after
+				background-color: $accent
+
+	&__item
+		position: absolute
+		right: 0
+		top: 50%
+		width: 12px
+		height: 2px
+		background-color: $text
+		border-radius: 4px
+		+transition
+		bottom: 0
+
+		&::before,
+		&::after
+			content: ''
+			display: block
+			position: absolute
+			right: 0
+			background-color: $text
+			height: 2px
+			+transition
+
+		&::before
+			top: 7px
+			width: 18px
+
+		&::after
+			top: -7px
+			width: 25px
+
+	&--active
+		z-index: 100
+
+		&:hover
+			span
+				background-color: transparent
+
+				&::before,
+				&::after
+					background-color: $accent
+
+		.hamburger__item
+			background-color: transparent
+
+			&::before
+				top: 0
+				width: 25px
+				transform: rotate(45deg)
+
+			&::after
+				top: 0
+				width: 25px
+				transform: rotate(-45deg)
+
+.header
+	position: fixed
+	top: 0
+	right: 0
+	left: 0
+	padding: 20px 0
+	z-index: 10000
+	background: #fff
+	border-bottom: 1px solid #000000
+
+	&__container
+		+between
+
+	&__logo
+		display: block
+		width: 200px
+
+		img
+			width: 100%
+			height: auto
+
+	&__nav
+		+transition
+		ul
+			display: flex
+			gap: 110px
+
+		a
+			@extend .link
+
+			+r(992)
+				gap: 50px
+
+		a
+			color: #000
+
+		+r(767)
+			position: fixed
+			top: 0
+			right: -200%
+			bottom: 0
+			background: #fff
+			z-index: 50
+			width: 100vw
+			height: 100%
+			padding: 30px
+			overflow: auto
+			gap: 10px
+			box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.55)
+			font-size: 18px
+
+			ul
+				flex-direction: column
+				align-items: center
+
+		&--active
+			right: 0
+
+.hero
+	&__slider
+		overflow: hidden
+		position: relative
+
+	&__pagination
+		z-index: 1
+		gap: 20px
+		display: flex
+		position: absolute
+		bottom: 20px
+		left: 50%
+		transform: translate(-50%, 0)
+
+		span
+			width: 13px
+			height: 13px
+			display: block
+			border: 2px solid #575757
+			border-radius: 50%
+
+		.swiper-pagination-bullet-active
+			background: $accent
+
+	&__next,
+	&__prev
+		z-index: 1
+
+		+r(576)
+			svg
+				width: 25px
+				height: 25px
+
+		svg,path
+			fill: #fff
+			&:hover
+				fill: $accent
+
+.banner
+	margin-top: 75px
+
+	+r(992)
+		margin-top: 35px
+
+	&__title
+		margin-bottom: 15px
+
+		+r(992)
+			font-size: 35px
+
+		+r(576)
+			font-size: 30px
+
+		span
+			font-size: 72px
+
+			+r(992)
+				font-size: 50px
+
+			+r(576)
+				font-size: 40px
+
+	&__info
+		background: url(../img/banner.jpg)
+		padding: 110px 0
+
+		+r(1400)
+			background-position-x: -330px
+
+		+r(992)
+			background-position-x: -580px
+			padding: 70px 0
+
+		+r(767)
+			background-position: -800px
+
+		+r(576)
+			background-position: -930px
+
+		+r(380)
+			background-position: -1000px
+
+	&__btn
+		display: block
+		width: fit-content
+		padding: 5px 35px
+		margin-bottom: 40px
+		font-size: 24px
+		background: $accent
+		color: rgba(7, 5, 8, 1)
+
+		+r(767)
+			margin-bottom: 20px
+			font-size: 20px
+			padding: 5px 20px
+
+		&:hover
+			color: #fff
+
+	&__text
+		color: #fff
+
+		p
+			width: 45%
+
+			+r(767)
+				width: 70%
+
+.info
+	margin: 90px 0
+
+	+r(992)
+		margin: 45px 0
+
+	&__container
+		display: flex
+		align-items: center
+		gap: 100px
+
+		+r(1200)
+			gap: 60px
+
+		+r(576)
+			gap: 30px
+
+		+r(480)
+			flex-direction: column
+
+	&__text
+		&_title
+			margin-bottom: 35px
+
+			+r(1200)
+				font-size: 40px
+
+			+r(992)
+				font-size: 25px
+				margin-bottom: 15px
+
+			+r(576)
+				font-size: 23px
+
+		span
+			color: $accent
+
+		&_subtitle
+			font-size: 18px
+			color: #7D7D7D
+
+			+r(992)
+				font-size: 16px
+
+		br
+			+r(576)
+				display: none
+
+	&__img
+		img
+			+r(992)
+				width: 100%
+				flex-shrink: 0
+
+.services
+	margin-bottom: 90px
+
+	+r(992)
+		margin-bottom: 45px
+
+	&__container
+		display: grid
+		grid-template-columns: repeat(4, 25%)
+		grid-auto-rows: 300px
+
+		+r(1200)
+			grid-template-columns: repeat(2, 50%)
+			grid-auto-rows: 250px
+
+		+r(576)
+			grid-template-columns: repeat(1, 100%)
+			grid-auto-rows: auto
+
+	&__item
+		padding: 40px
+		color: #fff
+		display: flex
+		justify-content: center
+		flex-direction: column
+
+		&:nth-child(2n)
+			background: $accent
+
+		&:nth-child(2n+1)
+			background: #333
+
+		+r(1200)
+			&:nth-child(1)
+				background: $accent
+
+			&:nth-child(2)
+				background: #333
+
+		+r(767)
+			padding: 25px
+
+		+r(576)
+			&:nth-child(1)
+				background: #333
+
+			&:nth-child(2)
+				background: $accent
+
+		&_title
+			font-size: 17px
+			font-weight: 900
+			margin-bottom: 20px
+
+		&_text
+			font-size: 12px
+
+		&_more
+			color: #fff
+
+			&:hover
+				text-decoration: underline
+				color: #fff
+
+		hr
+			border: 1px solid #FFFFFF
+			opacity: 0.5
+			margin: 20px 0
+
+.cart
+	margin-bottom: 90px
+
+	+r(992)
+		margin-bottom: 45px
+
+	&__container
+		display: flex
+		align-items: center
+		gap: 40px
+
+		+r(992)
+			gap: 20px
+
+		+r(767)
+			flex-direction: column
+
+	&__text
+		+r(992)
+			max-width: 50%
+
+		+r(767)
+			max-width: 100%
+
+		&_title
+			margin-bottom: 30px
+
+			+r(1200)
+				font-size: 40px
+
+			+r(992)
+				font-size: 25px
+				margin-bottom: 15px
+
+		&_text
+			line-height: 190%
+			span
+				font-weight: 700
+
+	&__img
+		img
+			+r(992)
+				width: 100%
+				flex-shrink: 0
+
+.portfolio
+	background: url(../img/bg-banner.png)
+	background-repeat: no-repeat
+	margin-bottom: 90px
+
+	+r(992)
+		margin-bottom: 45px
+		background-position: center
+
+	&__container
+		padding-top: 90px
+		display: grid
+		grid-template-columns: repeat(4, 25%)
+		grid-auto-rows: 300px
+
+		+r(992)
+			grid-template-columns: repeat(2, 50%)
+			grid-auto-rows: 175px
+			padding-top: 0
+
+	&__item
+		background: #fff
+		display: flex
+		justify-content: center
+		align-items: center
+		flex-direction: column
+		text-align: center
+		gap: 15px
+		padding: 30px
+
+		+r(992)
+			padding: 15px
+
+		+r(576)
+			gap: 5px
+			padding: 5px
+
+		&:nth-child(2n-1)
+			border: 15px solid #F79900
+
+			.portfolio__item_number
+				color: $accent
+
+		&:nth-child(2n)
+			border: 15px solid #333
+
+			.portfolio__item_number
+				color: #333
+
+		+r(992)
+			&:nth-child(2n-1)
+				border: 10px solid #F79900
+
+			&:nth-child(2n)
+				border: 10px solid #333
+
+			&:nth-child(1)
+				border: 10px solid #333
+
+				.portfolio__item_number
+					color: #333
+
+			&:nth-child(2)
+				border: 10px solid #F79900
+
+				.portfolio__item_number
+					color: $accent
+
+		&_number
+			font-size: 96px
+			font-weight: 900
+
+			+r(992)
+				font-size: 50px
+
+.work
+	margin-bottom: 90px
+
+	+r(992)
+		margin-bottom: 45px
+
+	.active
+		color: $accent
+
+		&::after
+			content: " "
+			height: 5px
+			width: 100%
+			display: block
+			background: $accent
+
+	&__content
+		display: flex
+		gap: 40px
+
+		+r(767)
+			flex-direction: column
+			gap: 15px
+
+	&__title
+		text-align: center
+		margin-bottom: 25px
+
+		+r(992)
+			margin-bottom: 15px
+			font-size: 25px
+
+	&__subtitle
+		display: flex
+		justify-content: center
+		margin-bottom: 35px
+		gap: 90px
+		font-size: 18px
+
+		+r(992)
+			margin-bottom: 15px
+
+		+r(767)
+			gap: 30px
+
+		+r(576)
+			font-size: 15px
+			gap: 20px
+
+		p
+			+transition
+			cursor: pointer
+
+			&:hover
+				color: $accent
+
+	&__img
+		max-width: 574px
+		background: url(../img/our-work.jpg)
+		background-repeat: no-repeat
+		padding: 150px 20px 150px 100px
+		display: flex
+		justify-content: center
+		align-items: center
+
+		+r(1200)
+			max-width: 50%
+			padding: 80px
+
+		+r(992)
+			padding: 30px
+
+		+r(767)
+			max-width: 100%
+			padding: 50px
+
+		+r(576)
+			padding: 30px
+
+		p
+			font-size: 48px
+			font-weight: 900
+			color: #fff
+
+			+r(1200)
+				font-size: 40px
+
+			+r(992)
+				font-size: 35px
+
+			+r(576)
+				font-size: 30px
+
+			span
+				color: $accent
+
+	&__wrap
+		background: #FFFFFF
+		border: 15px solid #F79900
+		max-width: 574px
+		width: 100%
+		position: relative
+		overflow: hidden
+
+	&__point
+		color: #fff
+		background: $accent
+		padding: 20px 30px
+		position: absolute
+		right: -10px
+		bottom: -10px
+
+	&__slider
+		overflow: hidden
+
+	&__button
+		display: flex
+		align-items: center
+		gap: 20px
+		position: absolute
+		bottom: 55px
+		left: 55px
+
+		+r(1200)
+			bottom: 30px
+			left: 30px
+
+		+r(992)
+			bottom: 20px
+			left: 20px
+
+	&__slide
+		padding: 100px 40px
+
+		+r(1200)
+			padding: 40px 30px 90px 30px
+
+		+r(992)
+			padding: 40px 20px 90px 20px
+
+	&__next,
+	&__prev
+		z-index: 1
+		border: 1px solid #7D7D7D
+		width: 50px
+		height: 50px
+		display: flex
+		justify-content: center
+		align-items: center
+		border-radius: 50%
+
+		&:hover
+			border: 1px solid $accent
+
+			path
+				stroke: $accent
+
+		+r(576)
+			width: 40px
+			height: 40px
+
+.consult
+	margin-bottom: 100px
+
+	+r(992)
+		margin-bottom: 45px
+
+	&__container
+		display: flex
+		gap: 40px
+
+		+r(576)
+			flex-direction: column
+			gap: 20px
+
+	&__title
+		margin-bottom: 25px
+
+		+r(992)
+			font-size: 25px
+			margin-bottom: 15px
+
+	&__text
+		margin-bottom: 45px
+
+		span
+			font-weight: 900
+
+	&__content
+		max-width: 60%
+		width: 100%
+
+		+r(576)
+			max-width: 100%
+
+	&__img
+		img
+			width: 100%
+
+.form
+	position: relative
+	padding-top: 20px
+	max-width: 470px
+	width: 100%
+	+pseudo
+
+	&::after
+		width: 100%
+		height: 100%
+		background-color: rgba(#fff, .7)
+		background-image: url(../img/loading.gif)
+		background-repeat: no-repeat
+		background-position: center
+		background-size: 120px
+		visibility: hidden
+		opacity: 0
+		z-index: 100
+		+transition
+
+	+r(1200)
+		padding-top: 0
+
+	&._sending
+
+		&::after
+			opacity: 1
+			visibility: visible
+
+	&__item
+		position: relative
+		margin-bottom: 25px
+
+		+r(992)
+			margin-bottom: 15px
+
+	&__label
+		font-size: 16px
+		font-weight: 500
+		margin-bottom: 10px
+
+	&__input
+		width: 100%
+		height: 66px
+		line-height: 40px
+		padding: 0 30px
+		background: #FFFFFF
+		border: 3px solid #BBBBBB
+
+		+r(992)
+			height: 45px
+			padding: 0 15px
+
+		&::placeholder
+			line-height: 40px
+			font-size: 16px
+			color: rgba(187, 187, 187, 1)
+
+		&:focus
+			box-shadow: 0 0 4px 0 rgba($text, 1)
+
+		&._error
+			box-shadow: 0 0 4px 0 rgba(red, 1)
+			border-color: red
+
+	&__btn
+		order: 1
+		padding-top: 20px
+		margin-bottom: 30px
+
+		+r(992)
+			padding-top: 10px
+			margin-bottom: 15px
+
+		&_button
+			@extend .btn
+			text-transform: uppercase
+
+			+r(992)
+				height: 45px
+
+	&__error
+		position: absolute
+		bottom: -15px
+		right: 25px
+		left: 25px
+		transition: all .3s
+		animation: error .3s linear 1 forwards
+		color: #fff
+		text-align: center
+		font-weight: 600
+		background-color: red
+		border-radius: 10px
+		z-index: 1
+
+		&::before
+			content: ''
+			position: absolute
+			left: 50%
+			top: -8px
+			margin-left: -2px
+			border-bottom: 4px solid red
+			border-left: 4px solid transparent
+			border-right: 4px solid transparent
+			border-top: 4px solid transparent
+
+	&__tips
+		font-size: 12px
+
+.footer
+	background: url(../img/bg-footer.jpg)
+	background-repeat: no-repeat
+	background-size: cover
+	color: #fff
+	padding: 100px 0
+
+	+r(992)
+		padding: 45px 0
+
+	&__block
+		display: flex
+		justify-content: space-between
+		margin-bottom: 45px
+
+		+r(767)
+			flex-wrap: wrap
+			gap: 20px
+			justify-content: center
+
+	&__list
+		display: flex
+		gap: 100px
+
+		+r(992)
+			gap: 25px
+
+		+r(576)
+			flex-wrap: wrap
+
+	&__item
+		display: flex
+		flex-direction: column
+
+		&_title
+			font-size: 18px
+			font-weight: 900
+			margin-bottom: 25px
+
+		&_nav
+			display: flex
+			flex-direction: column
+			gap: 20px
+
+			a
+				color: #fff
+				@extend .link
+
+	&__contact
+		display: flex
+		flex-direction: column
+		gap: 20px
+
+		+r(767)
+			align-items: center
+
+		a
+			color: #fff
+			font-size: 18px
+			font-weight: 900
+
+		&_soc
+			display: flex
+			gap: 7px
+
+			img
+				+transition
+				&:hover
+					+scale(1.2)
+
+	&__logo
+		display: block
+		width: fit-content
+
+		+r(767)
+			margin: auto
